@@ -1,0 +1,21 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Swift version
+        run: swiftc --version
+      - name: Build app bundle
+        run: bash scripts/build-app.sh
+      - name: Check bundle
+        run: |
+          test -x build/NowPlaying.app/Contents/MacOS/NowPlaying
+          plutil -lint build/NowPlaying.app/Contents/Info.plist
+          codesign --verify build/NowPlaying.app

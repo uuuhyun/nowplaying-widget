@@ -1,5 +1,7 @@
 # NowPlaying Widget
 
+[![Build](https://github.com/uuuhyun/nowplaying-widget/actions/workflows/build.yml/badge.svg)](https://github.com/uuuhyun/nowplaying-widget/actions/workflows/build.yml)
+
 Apple Music에서 지금 재생 중인 곡의 **앨범 커버와 제목**을 화면 구석에 **항상 위에** 띄워 주는 macOS 플로팅 위젯입니다.
 Music 앱을 숨겨 두거나 다른 앱을 전체화면으로 써도 무슨 곡이 나오는지 바로 보입니다.
 
@@ -8,6 +10,8 @@ A tiny always-on-top macOS widget that shows Apple Music's current track and alb
 <p align="center"><img src="docs/screenshot-desktop.jpg" width="720" alt="NowPlaying Widget on the desktop"></p>
 
 ## 기능 / Features
+
+<p align="center"><img src="docs/widget.png" width="378" alt="NowPlaying Widget close-up"></p>
 
 - 🎵 앨범 커버 · 곡 제목 · 아티스트 실시간 표시 (곡이 바뀌면 즉시 갱신)
 - 📌 항상 다른 창 위 — 모든 데스크탑(Space)과 전체화면 앱 위에도 표시
@@ -27,7 +31,7 @@ brew install uuuhyun/tap/nowplaying-widget
 brew services start nowplaying-widget
 ```
 
-Homebrew를 쓰고 있다면 빌드에 필요한 도구(Command Line Tools)가 이미 설치돼 있어서 바로 됩니다. Xcode는 필요 없어요.
+Homebrew를 쓰고 있다면 빌드에 필요한 도구(Command Line Tools)가 이미 설치돼 있어서 바로 됩니다.
 
 ### B. Homebrew 없이 한 줄 설치
 
@@ -77,10 +81,10 @@ cd nowplaying-widget
 ~/Applications/NowPlaying.app/Contents/MacOS/NowPlaying --demo
 ```
 
-## 왜 앱 파일(.app)이 아니라 소스 빌드인가요?
+## 기여하기 / Contributing
 
-Apple 개발자 인증서로 서명·공증하지 않은 앱을 내려받으면 macOS가 "손상된 앱" 경고를 띄웁니다.
-각자 맥에서 소스를 빌드하면 이 경고 없이 바로 쓸 수 있습니다. 코드는 [`NowPlaying.swift`](NowPlaying.swift) 한 파일이라 무엇을 하는지 직접 확인할 수 있습니다.
+버그 제보·기능 제안·PR 모두 환영합니다! 시작하기 전에 [CONTRIBUTING.md](CONTRIBUTING.md)를 읽어 주세요.
+Issues and pull requests are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## License
 

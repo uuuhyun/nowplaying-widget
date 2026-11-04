@@ -1,0 +1,23 @@
+name: 💡 기능 제안 / Feature request
+description: 이런 기능이 있으면 좋겠어요
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 어떤 점이 불편한가요? / What problem does this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: 원하는 모습 / Proposed solution
+      description: 그림이나 다른 앱 예시가 있으면 좋아요.
+    validations:
+      required: true
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: 직접 구현해 볼 의향 / Willing to contribute?
+      options:
+        - label: 제가 PR을 올려 볼게요 / I'd like to open a PR for this
