@@ -20,27 +20,30 @@ A tiny always-on-top macOS widget that shows Apple Music's current track and alb
 
 ## 설치 / Install
 
-**1. Xcode Command Line Tools 설치 (처음 한 번)**
-소스에서 직접 빌드하기 때문에 필요합니다. 이미 있으면 건너뛰세요.
-
-```bash
-xcode-select --install
-```
-
-**2-A. Homebrew로 설치 (추천)**
+### A. Homebrew (추천)
 
 ```bash
 brew install uuuhyun/tap/nowplaying-widget
 brew services start nowplaying-widget
 ```
 
-**2-B. 또는 설치 스크립트로 한 줄 설치**
+Homebrew를 쓰고 있다면 빌드에 필요한 도구(Command Line Tools)가 이미 설치돼 있어서 바로 됩니다. Xcode는 필요 없어요.
+
+### B. Homebrew 없이 한 줄 설치
+
+처음 한 번 Command Line Tools를 설치한 뒤 (이미 있으면 건너뛰기)
+
+```bash
+xcode-select --install
+```
+
+설치 스크립트를 실행하세요.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/uuuhyun/nowplaying-widget/main/install.sh | bash
 ```
 
-**3. 권한 허용**
+### 권한 허용
 Music 앱을 켜면 위젯이 나타납니다. 처음 한 번 *"NowPlaying이(가) Music을 제어하려고 합니다"* 창이 뜨면 **허용**을 눌러 주세요.
 (실수로 거부했다면 `시스템 설정 → 개인정보 보호 및 보안 → 자동화`에서 켤 수 있습니다.)
 로그인 시 자동 실행되므로 *"앱 백그라운드 활동"* 알림이 뜨는 것은 정상입니다.
