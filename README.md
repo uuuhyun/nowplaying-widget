@@ -17,7 +17,7 @@ A tiny always-on-top macOS widget that shows Apple Music's current track and alb
 - 📌 항상 다른 창 위 — 모든 데스크탑(Space)과 전체화면 앱 위에도 표시
 - ⏮ ⏯ ⏭ 재생 컨트롤 버튼
 - ⌖ 기본 위치(현재 모니터 우상단)로 되돌리기 · 드래그로 이동, 위치 기억
-- ✕ 숨기기 — Music을 다시 켜면 자동으로 다시 나타남
+- ✕ 숨기기 — 재생을 다시 시작하거나 Music을 다시 켜면 자동으로 나타남
 - 🚀 Music 앱이 켜져 있을 때만 보이고, 꺼지면 자동으로 숨김
 - 🖱 우클릭: 크기(4단계) · 투명도 · 종료
 - Dock 아이콘 없음, 폴링 없이 Music 알림 기반이라 가벼움 (Swift 단일 파일)

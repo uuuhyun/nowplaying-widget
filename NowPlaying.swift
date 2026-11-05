@@ -182,7 +182,7 @@ struct NowPlayingView: View {
         }
         .padding(10)
         .overlay(alignment: .topTrailing) {
-            ControlButton(symbol: "xmark", help: "숨기기 (Music을 다시 켜면 나타남)", size: 12) { actions.hide() }
+            ControlButton(symbol: "xmark", help: "숨기기 (재생을 시작하거나 Music을 다시 켜면 나타남)", size: 12) { actions.hide() }
                 .padding(.top, 4)
                 .padding(.trailing, 10)
         }
@@ -293,6 +293,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     let model = PlayerModel()
     let settings = Settings()
     var panel: FloatingPanel!
+    private var wasPlaying = false
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         let actions = PanelActions(resetPosition: { [weak self] in self?.resetPosition() },
@@ -336,6 +337,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         ws.addObserver(self, selector: #selector(appTerminated(_:)),
                        name: NSWorkspace.didTerminateApplicationNotification, object: nil)
         if Music.isRunning || PlayerModel.isDemo { panel.orderFrontRegardless() }
+
+        // ✕로 숨겨 둬도 일시정지/정지 → 재생으로 바뀌면 다시 띄운다 (곡이 넘어갈 때는 그대로 둔다)
+        DistributedNotificationCenter.default().addObserver(
+            self, selector: #selector(playerStateChanged(_:)),
+            name: NSNotification.Name("com.apple.Music.playerInfo"), object: nil)
+        wasPlaying = model.isPlaying
     }
 
     /// 위젯이 있는 모니터의 우상단(메뉴바 바로 아래)으로 이동
@@ -349,6 +356,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private static func isMusic(_ note: Notification) -> Bool {
         let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication
         return app?.bundleIdentifier == "com.apple.Music"
+    }
+
+    @objc func playerStateChanged(_ note: Notification) {
+        let playing = (note.userInfo?["Player State"] as? String) == "Playing"
+        DispatchQueue.main.async {
+            if playing && !self.wasPlaying { self.panel.orderFrontRegardless() }
+            self.wasPlaying = playing
+        }
     }
 
     @objc func appLaunched(_ note: Notification) {
